@@ -34,6 +34,19 @@ php artisan db:seed --class=CurrencySeeder
 	echo \Onuraycicek\Currency\Currency::convert("TRY", "USD", 100);
 ```
 
+## Config
+
+```php
+return [
+    'theme' => 'bootstrap5',
+    'currencies' => ['TRY', 'USD', 'EUR'],
+];
+
+theme: bootstrap5, bootstrap4 (not supported yet)
+currencies: https://www.html-code-generator.com/php/array/currency-names
+```
+
+
 ## Testing
 
 ```bash
