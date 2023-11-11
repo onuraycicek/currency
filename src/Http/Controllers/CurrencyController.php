@@ -20,6 +20,7 @@ class CurrencyController
                 ]);
             }
         }
+
         return redirect()->back()->withSuccess(__('Currency rates updated successfully.'));
     }
 }

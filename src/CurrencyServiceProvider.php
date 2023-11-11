@@ -3,16 +3,17 @@
 namespace Onuraycicek\Currency;
 
 use Illuminate\Support\Facades\Blade;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Onuraycicek\Currency\Commands\CurrencyCommand;
 use Onuraycicek\Currency\Components\CurrenyTableComponent;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class CurrencyServiceProvider extends PackageServiceProvider
 {
-    public function boot() {
-        parent::boot();  
+    public function boot()
+    {
+        parent::boot();
         $seederFileName = 'CurrencySeeder';
 
         $this->publishes([
@@ -36,7 +37,7 @@ class CurrencyServiceProvider extends PackageServiceProvider
             ->hasMigrations(['create_currency_tables', 'create_currency_rates_table'])
             ->hasRoute('web')
             ->hasCommand(CurrencyCommand::class)
-            ->hasInstallCommand(function(InstallCommand $command) {
+            ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publish("{$this->package->shortName()}-seeder")
                     ->publishConfigFile()
@@ -46,5 +47,4 @@ class CurrencyServiceProvider extends PackageServiceProvider
                     ->askToStarRepoOnGitHub('onuraycicek/currency');
             });
     }
-
 }
