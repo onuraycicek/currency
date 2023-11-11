@@ -12,6 +12,10 @@ class CurrencyController
         $currency_rate_values = $request->currency; // [from_currency_id][to_currency_id]
         foreach ($currency_rate_values as $from_currency_id => $to_currency_values) {
             foreach ($to_currency_values as $to_currency_id => $rate) {
+                if ($from_currency_id == $to_currency_id && $rate == null) {
+                    continue;
+                }
+
                 DB::table('currency_rates')->updateOrInsert([
                     'from_currency_id' => $from_currency_id,
                     'to_currency_id' => $to_currency_id,
