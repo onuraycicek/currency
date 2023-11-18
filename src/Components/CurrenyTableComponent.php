@@ -18,8 +18,18 @@ class CurrenyTableComponent extends Component
 
     public function __construct()
     {
+        $defaultCurrencies = ['TRY', 'USD', 'EUR'];
         $this->theme = config('currency.theme', 'bootstrap5');
-        $this->filteredList = config('currency.currencies', ['TRY', 'USD', 'EUR']);
+        $this->filteredList = config('currency.currencies');
+        
+        if (empty($this->filteredList)) {
+            $activeCurrencies = DB::table('currencies')->where('status', 1)->get();
+            if ($activeCurrencies->count() > 0) {
+                $this->filteredList = $activeCurrencies->pluck('code')->toArray();
+            } else {
+                $this->filteredList = $defaultCurrencies;
+            }
+        }
 
         $this->currencies = DB::table('currencies')->whereIn('code', $this->filteredList)->get();
         $this->currencyRates = DB::table('currency_rates')->when($this->filteredList, function ($query, $filteredList) {

@@ -39,7 +39,7 @@ php artisan db:seed --class=CurrencySeeder
 ```php
 return [
     'theme' => 'bootstrap5',
-    'currencies' => ['TRY', 'USD', 'EUR'],
+    'currencies' => ['TRY', 'USD', 'EUR'], // if it is null, currencies with status 1 will be shown. -> ('currencies' => null)
 ];
 
 theme: bootstrap5, bootstrap4 (not supported yet)
