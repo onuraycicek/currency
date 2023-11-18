@@ -21,7 +21,7 @@ class CurrenyTableComponent extends Component
         $defaultCurrencies = ['TRY', 'USD', 'EUR'];
         $this->theme = config('currency.theme', 'bootstrap5');
         $this->filteredList = config('currency.currencies');
-        
+
         if (empty($this->filteredList)) {
             $activeCurrencies = DB::table('currencies')->where('status', 1)->get();
             if ($activeCurrencies->count() > 0) {
