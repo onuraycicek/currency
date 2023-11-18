@@ -36,7 +36,9 @@ class CurrencyServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigrations(['create_currency_tables', 'create_currency_rates_table'])
             ->hasRoute('web')
-            ->hasCommand(CurrencyCommand::class)
+            ->hasCommand(CurrencyCommand::class);
+            
+            /*
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publish("{$this->package->shortName()}-seeder")
@@ -45,6 +47,7 @@ class CurrencyServiceProvider extends PackageServiceProvider
                     ->publishMigrations()
                     ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('onuraycicek/currency');
-            });
+            })
+            */
     }
 }
