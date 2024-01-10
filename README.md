@@ -57,10 +57,18 @@ $toId = 155;
 $amount = 100;
 echo \Onuraycicek\Currency\Currency::convertWithId($fromId, $toId, $amount);
 
-$fromCurrencyCode = "TRY";
-$toCurrencyCode = "USD";
+$fromCurrencyCode = 'TRY';
+$toCurrencyCode = 'USD';
 $amount = 100;
 echo \Onuraycicek\Currency\Currency::convert($fromCurrencyCode, $toCurrencyCode, $amount);
+
+var_dump(\Onuraycicek\Currency\Currency::getActiveCurrencies());
+
+$currencyCode = 'TRY';
+var_dump(\Onuraycicek\Currency\Currency::getCurrency('TRY'));
+
+$currencyId = 1;
+var_dump(\Onuraycicek\Currency\Currency::getCurrencyById($currencyId));
 ```
 
 ## Config
