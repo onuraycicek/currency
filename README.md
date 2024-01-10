@@ -34,6 +34,11 @@ You must be add this libs: Bootstrap 5, Jquery, Select2.
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 ```
 
+Finally you must be add the end (footer) of the layout file: (it's required when you want to use "select-active" attribute)
+```php
+@stack("footer")
+```
+
 ## Usage
 
 ![Alt text](assets/preview.jpg)
@@ -44,7 +49,7 @@ You must be add this libs: Bootstrap 5, Jquery, Select2.
 
 #### **Attributes:**
 
-__select-active__: It adds a selectbox above the table so you can check your currencies' activity values.
+__select-active__: It adds a selectbox above the table so you can check your currencies activity values.
 
 ```php
 $fromId = 53;

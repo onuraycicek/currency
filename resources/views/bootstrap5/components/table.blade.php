@@ -49,6 +49,7 @@
     <button class="btn btn-primary ml-auto d-block ms-auto">{{ __('Save') }}</button>
 </form>
 @isset($selectActive)
+    @push("footer")
     <script>
         $("#curreny_package_select2").select2({
             ajax: {
@@ -79,4 +80,5 @@
             ).trigger("change");
         @endforeach
     </script>
+    @endpush
 @endisset
