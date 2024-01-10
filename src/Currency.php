@@ -34,4 +34,19 @@ class Currency
 
         return false;
     }
+
+    public static function getActiveCurrencies()
+    {
+        return DB::table('currencies')->where('status', 1)->get();
+    }
+
+    public static function getCurrency($currency_code)
+    {
+        return DB::table('currencies')->where('code', $currency_code)->first();
+    }
+
+    public static function getCurrencyById($currency_id)
+    {
+        return DB::table('currencies')->where('id', $currency_id)->first();
+    }
 }

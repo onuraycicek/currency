@@ -25,6 +25,33 @@ class CurrencyController
             }
         }
 
+        $active_currency_ids = $request->active_currency_ids;
+        DB::table('currencies')->update([
+            'status' => 0,
+        ]);
+        if ($active_currency_ids) {
+            foreach ($active_currency_ids as $currency_id) {
+                DB::table('currencies')->where('id', $currency_id)->update([
+                    'status' => 1,
+                ]);
+            }
+        }
+
         return redirect()->back()->withSuccess(__('Currency rates updated successfully.'));
+    }
+
+    public function select2(Request $request)
+    {
+        $q = $request->q;
+        $currencies = DB::table('currencies')->where('code', 'like', '%' . $q . '%')->orWhere('name', 'like', '%' . $q . '%')->get();
+        $data = [];
+        foreach ($currencies as $currency) {
+            $data[] = [
+                'id' => $currency->id,
+                'text' => $currency->code . ' - ' . $currency->name,
+            ];
+        }
+
+        return response()->json($data);
     }
 }

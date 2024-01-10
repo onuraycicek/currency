@@ -21,17 +21,41 @@ php artisan migrate
 php artisan db:seed --class=CurrencySeeder
 ```
 
+You must be add this libs: Bootstrap 5, Jquery, Select2.
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+```
+
 ## Usage
 
 ![Alt text](assets/preview.jpg)
 
 ```php
-	<x-currency-table></x-currency-table>
+<x-currency-table select-active></x-currency-table>
 ```
 
+#### **Attributes:**
+
+__select-active__: It adds a selectbox above the table so you can check your currencies' activity values.
+
 ```php
-	echo \Onuraycicek\Currency\Currency::convertWithId(53, 155, 100);
-	echo \Onuraycicek\Currency\Currency::convert("TRY", "USD", 100);
+$fromId = 53;
+$toId = 155;
+$amount = 100;
+echo \Onuraycicek\Currency\Currency::convertWithId($fromId, $toId, $amount);
+
+$fromCurrencyCode = "TRY";
+$toCurrencyCode = "USD";
+$amount = 100;
+echo \Onuraycicek\Currency\Currency::convert($fromCurrencyCode, $toCurrencyCode, $amount);
 ```
 
 ## Config

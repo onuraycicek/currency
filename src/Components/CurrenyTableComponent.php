@@ -14,10 +14,13 @@ class CurrenyTableComponent extends Component
 
     public $currencyRates;
 
+    public $selectActive;
+
     private $filteredList;
 
-    public function __construct()
+    public function __construct($selectActive=false)
     {
+        $this->selectActive = $selectActive;
         $defaultCurrencies = ['TRY', 'USD', 'EUR'];
         $this->theme = config('currency.theme', 'bootstrap5');
         $this->filteredList = config('currency.currencies');
