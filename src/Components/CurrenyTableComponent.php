@@ -18,7 +18,7 @@ class CurrenyTableComponent extends Component
 
     private $filteredList;
 
-    public function __construct($selectActive=false)
+    public function __construct($selectActive = false)
     {
         $this->selectActive = $selectActive;
         $defaultCurrencies = ['TRY', 'USD', 'EUR'];

@@ -43,12 +43,12 @@ class CurrencyController
     public function select2(Request $request)
     {
         $q = $request->q;
-        $currencies = DB::table('currencies')->where('code', 'like', '%' . $q . '%')->orWhere('name', 'like', '%' . $q . '%')->get();
+        $currencies = DB::table('currencies')->where('code', 'like', '%'.$q.'%')->orWhere('name', 'like', '%'.$q.'%')->get();
         $data = [];
         foreach ($currencies as $currency) {
             $data[] = [
                 'id' => $currency->id,
-                'text' => $currency->code . ' - ' . $currency->name,
+                'text' => $currency->code.' - '.$currency->name,
             ];
         }
 
