@@ -69,6 +69,8 @@ var_dump(\Onuraycicek\Currency\Currency::getCurrency('TRY'));
 
 $currencyId = 1;
 var_dump(\Onuraycicek\Currency\Currency::getCurrencyById($currencyId));
+
+var_dump(\Onuraycicek\Currency\Models\Currency::all());
 ```
 
 ## Config
