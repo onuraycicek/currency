@@ -71,7 +71,7 @@ class Currency
 
                     return $to_rate * $amount;
                 }
-            }else {
+            } else {
                 $currency_rate = DB::table('currency_dates')
                     ->where('currency_id', $from_currency->id)
                     ->orderBy('query_date', 'desc')
@@ -80,7 +80,7 @@ class Currency
                     $from_rate = json_decode($currency_rate->currency_cross, true);
                     if (isset($from_rate[$to_currency->id])) {
                         $from_rate = (float) $from_rate[$to_currency->id];
-    
+
                         return $amount / $from_rate;
                     }
                 } else {
@@ -93,7 +93,7 @@ class Currency
                     }
                 }
             }
-        } 
+        }
 
         return false;
     }
