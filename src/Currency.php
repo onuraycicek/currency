@@ -71,8 +71,29 @@ class Currency
 
                     return $to_rate * $amount;
                 }
+            }else {
+                $currency_rate = DB::table('currency_dates')
+                    ->where('currency_id', $from_currency->id)
+                    ->orderBy('query_date', 'desc')
+                    ->first();
+                if ($currency_rate) {
+                    $from_rate = json_decode($currency_rate->currency_cross, true);
+                    if (isset($from_rate[$to_currency->id])) {
+                        $from_rate = (float) $from_rate[$to_currency->id];
+    
+                        return $amount / $from_rate;
+                    }
+                } else {
+                    $currency_rate = DB::table('currency_rates')
+                        ->where('from_currency_id', $from_currency->id)
+                        ->where('to_currency_id', $to_currency->id)
+                        ->first();
+                    if ($currency_rate) {
+                        return $currency_rate->rate * $amount;
+                    }
+                }
             }
-        }
+        } 
 
         return false;
     }
@@ -93,6 +114,27 @@ class Currency
                 $to_rate = (float) $to_rate[$from_currency_id];
 
                 return $to_rate * $amount;
+            }
+        } else {
+            $currency_rate = DB::table('currency_dates')
+                ->where('currency_id', $from_currency_id)
+                ->orderBy('query_date', 'desc')
+                ->first();
+            if ($currency_rate) {
+                $from_rate = json_decode($currency_rate->currency_cross, true);
+                if (isset($from_rate[$to_currency_id])) {
+                    $from_rate = (float) $from_rate[$to_currency_id];
+
+                    return $amount / $from_rate;
+                }
+            } else {
+                $currency_rate = DB::table('currency_rates')
+                    ->where('from_currency_id', $from_currency_id)
+                    ->where('to_currency_id', $to_currency_id)
+                    ->first();
+                if ($currency_rate) {
+                    return $currency_rate->rate * $amount;
+                }
             }
         }
 

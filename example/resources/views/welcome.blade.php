@@ -75,5 +75,17 @@
         'amount' => 100,
         'date' => '2024-03-12',
     ]);
+    $formatter('convertByDate', [
+        'from_currency_code' => 'USD',
+        'to_currency_code' => 'TRY',
+        'amount' => 100,
+        'date' => '2024-03-11',
+    ]);
+    $formatter('convertByDateWithId', [
+        'from_currency_id' => 2,
+        'to_currency_id' => 4,
+        'amount' => 100,
+        'date' => '2024-03-11',
+    ]);
     // $formatter('all', []);
 @endphp
