@@ -34,7 +34,7 @@ class CurrencyServiceProvider extends PackageServiceProvider
             ->name('currency')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigrations(['create_currency_tables', 'create_currency_rates_table'])
+            ->hasMigrations(['create_currencies_table', 'create_currency_rates_table', 'create_currency_dates_table'])
             ->hasRoute('web')
             ->hasCommand(CurrencyCommand::class);
 
