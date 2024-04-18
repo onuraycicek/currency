@@ -13,7 +13,7 @@ class Currency
         }
 
         $currency_rate = DB::table('currency_rates')->where('from_currency_id', $from_currency_id)->where('to_currency_id', $to_currency_id)->first();
-        
+
         if ($currency_rate) {
             return $currency_rate->rate * $amount;
         }
